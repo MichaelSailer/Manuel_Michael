@@ -1,0 +1,270 @@
+// Erklärung is-a has-a: Eine Person ist ein Kunde (1:1), eine Person hat mehrere E-Mails (1:n)
+// Sie werden mit Linien verbunden und als Kardinalität angeschrieben
+/* Abstrakte Klassen, sind Superklassen. In diese Klassen ist das Instanzieren nicht möglich. Quasi wie eine Vorlage aka. Template (um den gemeinsamen CodeSetCache
+																													nur einmal zu Programmieren zu müssen)
+Abstrakte Methoden sind dazu da, dass man nicht immer die komplette Methode (z.B. calculateSum) neuschreiben muss, sondern nur einen Teil
+
+Polymorphie bedeutet, dass automatisch die richtige Methode aufgerufen wird. z.B. Man hat eine Methode mit LEDBlink(numbersOfBlink) und eine LEDBlink (numbersOfBlink, interval)
+je nach dem was benötigt wird, wird die richtige Methode aufgerufen
+*/
+
+// Basisklasse vererbt der Unterklasse (Parent-Child) alles, bis auf die CTORS 
+// this wird für den Aufruf von private fields benutzt
+// this(); wird im Konstruktor benutzt um Standartwerte zu instanzieren
+// super() wird benötigt, um von der darüberliegenden Klasse die Konstruktoren zu verwenden. Somit spart man sich einen Code-Teil
+
+// Suchmethode:
+// Article ist eine Klasse voller Artikel, wir sind jz im Shop
+
+//als aller Erstes suchen wir nach der ID
+
+/* in ARTICLE existiert eine Methode Namens: public int getArticleNr(){
+	return this._articleNr
+	}
+	public void setArticleNr(int articleNr){
+		if(articleNr >=0){
+	this._articleNr = articleNr;`}}
+*/
+private ARTICLE _articles;
+private ARTICLE _category;
+private ARTICLE _price;
+
+public ARTICLE getArticleByID(int id){
+		for(ARTICLE a : this._articles){
+			if(a.getArticleNr == id){
+			return a; // einfach nur die Variable zurückgeben.
+			}
+		}
+		// wenn bis hier her, dann false
+		return false;
+	}	
+// nun by category
+public ARTICLE getArticleByCategory(String category){ // wir nehmen an, dass der getter in ARTICLE geschrieben worden ist
+	for(ARTICLE c : this._category){
+		if(c.getArticleByCategory == category){
+			return c;
+			}
+		}
+	return false;
+	}
+	
+public ARTICLE getArticleByPrice(double price){
+	for(ARTICLE p : this._price){
+		if(((p.getArticleByPrice > Wert1) && (p.getArticleByPrice < Wert2)) == (price > Wert1) && (price < Wert2)){
+			return p;
+		}
+	}
+	return false;
+}
+	
+	
+	
+	
+// Frage 14, was wird vererbt: Alles außer Ctors's, public Variablen.
+// protected werden vererbt, aber nicht in die Hauptklasses
+
+
+// Basket addItem
+
+public void addBasketItem (BasketItem item){
+	this._items.add(item);
+	
+// Basket removeItem
+public void removeBasketItem (BasketItem item){
+	for(BasketItem i : this._items){
+			if(id == i.getArticle.getArticleNr()){
+			this._items.remove(item);}
+
+// Shop toString
+
+public String toString(){
+StringBuilder s = new StringBuilder;
+
+for(ARTICLES a: _articles){
+s.append(a.getArticleNr()).append(" ").append(a.getArticleName()).append(" ").append(a.getPrice()).append("€\n");}
+return s.toString();}
+
+// Basket toString
+
+public String toString(){
+	// Zeichenkette bilden
+String s="";
+if(this.items.size()>0){
+	for(BasketItems b: this._items){
+	s+=b.toString() + "\n";
+	}
+}
+if(s == ""){
+return("Keine Einträge vorhanden");}
+return s;
+
+// Hauptprogramm / Hauptklasses
+Shop _amazonshop = new Shop();
+Basket _basket = new Basket();
+char wahlMenu, mainMenu;
+
+int _id, _stückzahl;
+
+wahlMenu = mainMenu();
+do{
+switch(wahlMenu){
+	case 'a': out.println(_amazonshop);
+	out.println("Geben Sie die ID des Articles ein, um ein Objekt hinzuzufügen: ");
+	_id = _Reader.nextInt();
+	ARTICLE a = _amazonshop.getArticleByID(_id);
+	if(_id == null){
+	out.println("Nicht gefunden!");}
+	out.println("Wie viel Stück: ");
+	_stückzahl = _Reader.nextInt();
+	if(_stückzahl < 0){
+	_stückzahl = _stückzahl * (-1);}
+	_basket.addItem(_id, _stückzahl);
+	
+	
+	;break;
+	case 'b': out.println(_amazonshop);;break;
+	case 'x': out.println("Welches Objekt wollen Sie löschen: ");
+	_id = _Reader.nextInt();
+	if(basket.removeItem(_id)){
+	out.println("Objekt erfolgreich gelöscht");}
+	else{ out.println("uuups... da is wohl was schief gegangen.");}
+	
+	;break;
+	defaul: ;break;
+
+}
+}while(wahl != 'x');
+	public char mainMenu(char wahl){
+		out.println("xy");
+		out.println("yy");
+		out.println("adf");
+		out.println("Ihre Eingabe: ");
+		wahl = _Reader.next().toLowerCase.charAt(0);
+	return wahl;}
+	
+	
+	
+	// search by ID
+	
+	public Article getArticleByID(int id){
+		for(Article a : this._articles){
+			if(a.getArticleNr() == id){
+				return a
+			}
+		}
+		return false;
+	}
+	
+	public Article getArticleByCategory(String category){
+		for(Article c : this._category){
+			if(c.getArticleCategory() == category){
+				return c;
+			}
+		}
+		return false;
+	}
+	
+	public Article getArticleByName(String name){
+		for(Article n : this._name){
+			if(n.getArticleName() == name){
+					return n;
+			}
+		}
+		return false;
+	}
+	
+	public boolean removeItem(int id){
+		for(BasketItem a : this._items){
+			if(a.getArticle.getArticleNr() == id){
+				return this._items.remove(a);
+			}
+		}
+	}
+	
+	public void addItem(BasketItem item){
+		this._items.add(item);
+	}
+}
+
+
+public Article getArticleByID(int id){
+	for(Article a : this._items){
+		if(a.getArticleNr() == id){
+			return a;
+		}
+	}
+	return false;
+}
+
+public Article getArticleByCategory(String category){
+	for(Article c : this._items){
+		if(c.getArticleCategory() == category){
+			return c;
+		}
+	}
+	return false;
+}
+
+public void addItem(BasketItem item){
+	this._items.add(item);
+}
+
+public boolean removeItem(int id){
+	for(BasketItem b: this._items){
+		if(b.getArticle.getArticleNr() = id){
+			return b;
+		}
+	}
+	return falsen;
+}
+
+
+
+public void addItem(BasketItem item){
+	this._items.add(item);
+}
+
+public boolean removeItem(int id){
+	for(BasketItem b : this._items){
+		if(b.getArticle.getArticleNr() == id){
+			return b;
+		}
+	}
+	return false;
+}
+
+
+public Article getArticleByID(int id){
+	for(Article a : this._items){
+		if(a.getArticleNr() == id){
+			return a;
+		}
+	}
+	return false;
+}
+
+public Article getArticleByCategory(String category){
+	for(Article c: this._items){
+		if(c.getArticleCategory == category){
+			return c;
+		}
+	}
+	return false;
+}
+
+
+case 'a': 
+
+out.print("Wollen Sie Artikel hinzufügen: ");
+_id = _reader.next();
+Article a = _amazonshop.getArticleByID(_id);
+if(a == null){
+out.println("Keine Artikel vorhanden");
+else{
+out.print("Wie viele Stück: ");
+_stückzahl = _reader.nextInt();
+_basket.addItem(new BasketItem(_id, _stückzahl);
+
+if(_basket.removeItem(_id)){
+out.println("Objekt erfolgreich entfernt");
+else{out.println("Entfernen gescheitert);}	
